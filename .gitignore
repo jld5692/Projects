@@ -1,0 +1,5 @@
+# Exclusion de la gestion git des fichiers commencant par properties, settings et autres paramétrages. 
+#   --> pour le pas propager ensuite sous github des données personnes (user, password, ...) !
+
+properties*
+settings*
