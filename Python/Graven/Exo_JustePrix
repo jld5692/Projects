@@ -1,0 +1,42 @@
+from random import randrange
+
+# caclul aléatoire du numéro à rechercher
+numAleatoire = randrange(1, 1000)
+print(numAleatoire)
+
+# On initliase un boolean trouve à false. Il passera à true si bon
+numTrouve = False
+
+# On initialise aussi un compteur pour savoir en combien de coup le user à trouve
+cpt = 0
+
+# Tant que l'on n'a pas trouvé le numéro, on boucle
+while numTrouve == False:
+    # Choisir un nombre entre 1 et 1000
+    # J'utilise ma conversion float pour éviter les erreurs si la saisie n'est pas respecté par le user
+    print("----------------------------------------------------------")
+    num = float(input("Merci de choisir un entier entre 1 et 1000 : "))
+
+    # On ajout un essai au compteur
+    cpt += 1
+
+    # On vérifie que la saisie utilisateur est conforme au instruction
+    if num < 1:
+        print("Votre nombre n'est pas bon --> inférieur à la valeure minimal qui est 1")
+        print("Veuillez en saisir un nouveau conforme au instruction du jeu)")
+        continue
+    elif num > 1000:
+        print("Votre nombre n'est pas bon --> supérieur à la valeure maximal qui est 1000")
+        print("Veuillez en saisir un nouveau conforme au instruction du jeu)")
+        continue
+
+    # on va maintenant pouvoir vérifier si la saisie correspond bien au numéro aléatoire
+    if num == numAleatoire:
+        break  # Trouvé donc on sors
+    elif num > numAleatoire:
+        print("Votre nombre est supérieur au nombre rechercher. Essai encore")
+    elif num < numAleatoire:
+        print("Votre nombre est inférieur au nombre rechercher. Essai encore")
+
+# Le numéro a été trouvé -> on est sortie de la boucle
+print("Bravo vous avez trouve le numéro en {} coups".format(cpt))
