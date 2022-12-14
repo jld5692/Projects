@@ -3,10 +3,14 @@ import pyttsx3 as ttx
 import pywhatkit
 import datetime
 
+# Pour faire  parler l'assistant
+
 
 def parler(text):
     engine.say(text)
     engine.runAndWait()
+
+# En écoute de la commande utilisateur.
 
 
 def ecouter():
@@ -22,6 +26,8 @@ def ecouter():
     return command
 
 
+# On lance réellement l'asistant à ce niveau
+# C'est a ce niveau aussi que l'on définit les actions possibles
 def lancer_assistant():
     command = ecouter()
     print(command)
@@ -40,12 +46,16 @@ def lancer_assistant():
         parler('Je ne comprends pas')
 
 
+###############################################
+# Init au lancement
 # C'est ce qui écoute
 listener = sr.Recognizer()
 
 engine = ttx.init()
 voice = engine.getProperty('voices')
 engine.setProperty('voice', 'french')
+###############################################
 
+# Boucle pour se mettre en attente d'instruction
 while True:
     lancer_assistant()
